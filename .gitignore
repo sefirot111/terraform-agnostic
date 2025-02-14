@@ -1,0 +1,36 @@
+# Archivos de estado de Terraform
+*.tfstate
+*.tfstate.*
+
+# Archivos de bloqueo de Terraform
+.terraform.lock.hcl
+
+# Directorio de caché de Terraform
+.terraform/
+
+# Archivos de variables sensibles
+*.tfvars
+*.tfvars.json
+
+# Archivos de configuración local
+.terraformrc
+terraform.rc
+
+# Archivos de plan de Terraform
+*.tfplan
+
+# Archivos de logs
+*.log
+
+# Archivos generados por el IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de entorno local
+.env
+.env.local
+
+# Archivos de dependencias (si usas algún gestor de paquetes)
+vendor/
