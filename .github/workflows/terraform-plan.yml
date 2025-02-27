@@ -18,7 +18,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.5.0  # Cambia esto a la versión de Terraform que uses
+          terraform_version: 1.10.5  # Cambia esto a la versión de Terraform que uses
 
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v1
