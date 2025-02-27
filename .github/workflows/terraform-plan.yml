@@ -1,0 +1,36 @@
+name: Terraform Plan
+
+on:
+  push:
+    branches:
+      - myfirstproject  # Usamos tu rama específica
+
+jobs:
+  terraform-plan:
+    name: "Terraform Plan"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0  # Cambia esto a la versión de Terraform que uses
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}  # Secret con las credenciales de GCP
+
+      - name: Set up GCP Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
