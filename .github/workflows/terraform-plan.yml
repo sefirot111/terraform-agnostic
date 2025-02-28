@@ -15,13 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Detect project folder
-        id: detect-folder
-        run: |
-          changed_folder=$(git diff --name-only HEAD^ HEAD | awk -F/ '{print $1}' | sort | uniq)
-          echo "Detected folder: $changed_folder"
-          echo "folder=$changed_folder" >> $GITHUB_OUTPUT
-
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -38,9 +31,9 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: ./${{ steps.detect-folder.outputs.folder }}
+        working-directory: ./${{ github.ref_name }}  # Cambia al directorio de la rama
 
       - name: Terraform Plan
         id: plan
         run: terraform plan
-        working-directory: ./${{ steps.detect-folder.outputs.folder }}
+        working-directory: ./${{ github.ref_name }}  # Cambia al directorio de la rama
