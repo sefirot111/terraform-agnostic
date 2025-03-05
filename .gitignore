@@ -1,7 +1,7 @@
 # Archivos de estado de Terraform
 *.tfstate
 *.tfstate.*
-.github/workflows/*
+.github/workflows/
 
 # Archivos de bloqueo de Terraform
 .terraform.lock.hcl
