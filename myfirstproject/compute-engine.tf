@@ -22,7 +22,7 @@ module "compute_instance" {
   zone                = "us-east1-b"
   subnetwork          = "default"
   subnetwork_project  = "ninth-palace-423513-n5"
-  num_instances       = "1"
+  num_instances       = "2"
   hostname            = "instance-simple"
   instance_template   = module.instance_template.self_link
   deletion_protection = false
