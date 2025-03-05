@@ -3,7 +3,7 @@ name: Terraform Apply on PR
 on:
   pull_request:
     branches:
-      - main  # Se activa en PRs hacia la rama main
+      - main  # Solo se activa en PRs hacia la rama main
 
 jobs:
   terraform-apply:
