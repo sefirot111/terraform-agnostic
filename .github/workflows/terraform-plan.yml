@@ -2,8 +2,11 @@ name: Terraform Plan
 
 on:
   push:
+  push:
     branches:
-      - myfirstproject  # Usamos tu rama específica
+      - '**'  # Se activa en pushes a cualquier rama
+    branches-ignore:
+      - main  # Ignora la rama main
 
 jobs:
   terraform-plan:
