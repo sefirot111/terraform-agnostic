@@ -2,7 +2,6 @@ name: Terraform Plan
 
 on:
   push:
-  push:
     branches:
       - '**'  # Se activa en pushes a cualquier rama
     branches-ignore:
