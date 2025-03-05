@@ -1,13 +1,13 @@
-name: Terraform Apply on PR
+name: Terraform Plan
 
 on:
-  pull_request:
+  push:
     branches:
-      - main  # Solo se activa en PRs hacia la rama main
+      - myfirstproject  # Usamos tu rama específica
 
 jobs:
-  terraform-apply:
-    name: "Terraform Apply"
+  terraform-plan:
+    name: "Terraform Plan"
     runs-on: ubuntu-latest
     environment: terraform  # Referencia el environment que creaste
 
@@ -28,19 +28,12 @@ jobs:
       - name: Set up GCP Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
 
-      - name: Determine PR branch
-        id: pr-branch
-        run: |
-          PR_BRANCH="${{ github.event.pull_request.head.ref }}"
-          echo "PR branch: $PR_BRANCH"
-          echo "pr_branch=$PR_BRANCH" >> $GITHUB_OUTPUT
-
       - name: Terraform Init
         id: init
         run: terraform init
-        working-directory: ./${{ steps.pr-branch.outputs.pr_branch }}  # Usa la rama de origen del PR
+        working-directory: ./${{ github.ref_name }}  # Cambia al directorio de la rama
 
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -auto-approve
-        working-directory: ./${{ steps.pr-branch.outputs.pr_branch }}  # Usa la rama de origen del PR
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+        working-directory: ./${{ github.ref_name }}  # Cambia al directorio de la rama
